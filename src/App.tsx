@@ -1,25 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline } from '@mui/material';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import AuthRoutes from './utility/hooks/useAuthRoutes';
+import MmtLocaleProvider from './utility/provider/locale/MmtLocaleProvider';
+import MmtThemeProvider from './utility/provider/theme/MmtThemeProvider';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ErrorSuspense } from './components/molecule';
+import { LayoutRoute } from './layouts/LayoutRoute';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      useErrorBoundary: false,
+      retry: 0,
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <MmtThemeProvider>
+          <MmtLocaleProvider>
+            <BrowserRouter>
+              <ErrorSuspense>
+                <AuthRoutes>
+                  <LayoutRoute />
+                  <CssBaseline />
+                </AuthRoutes>
+              </ErrorSuspense>
+            </BrowserRouter>
+          </MmtLocaleProvider>
+        </MmtThemeProvider>
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 }
 
