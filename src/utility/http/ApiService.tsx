@@ -53,19 +53,17 @@ export interface MmtError<T> extends AxiosError<T, any> {
 export const findAll = async <T,>(url: string, config?: AxiosRequestConfig<T>) => {
   const response = await httpClient.get<T | T[]>(url, { ...config });
   return response.data;
-}
+};
 
 export const useGetQuery = <
   TQueryFnData = unknown,
   TError extends MmtError<TQueryFnData> = MmtError<TQueryFnData> & unknown,
   TData = TQueryFnData,
-  TQueryKey extends QueryKey = QueryKey
+  TQueryKey extends QueryKey = QueryKey,
 >(
   queryKey: TQueryKey,
   queryFn: QueryFunction<TQueryFnData, TQueryKey>,
-  options?: Omit<
-    UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
-    'queryKey' | 'queryFn'>
+  options?: Omit<UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>, 'queryKey' | 'queryFn'>,
 ): UseQueryResult<TData, TError> => {
   const query = useQuery<TQueryFnData, TError, TData, TQueryKey>(queryKey, queryFn, {
     ...options,
@@ -85,8 +83,8 @@ export const useGetQuery = <
           message: error.message
             ? error.message.replace('\n', '<br />')
             : error.message
-              ? error.message.replace('\n', '<br />')
-              : `${error}(${error.status})`,
+            ? error.message.replace('\n', '<br />')
+            : `${error}(${error.status})`,
         };
       }
       console.error(`[HTTP Error] ${error.message}`);
@@ -95,17 +93,13 @@ export const useGetQuery = <
   });
 
   return query;
-}
+};
 
 /**
  * 에러핸들러
  * @param error 에러
  */
-const handleError = <
-  TError = MmtError<any> & unknown,
->(
-  error: TError
-): any => {
+const handleError = <TError = MmtError<any> & unknown,>(error: TError): any => {
   let errResponse: any;
 
   return errResponse;

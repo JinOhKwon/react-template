@@ -36,6 +36,4 @@ export const config = (): AppConfig => {
     apiUrl: get(`${prefix}_API_URL`) ?? '',
     envCd: (get(`${prefix}_ENV_CD`) as EnvCd) ?? EnvCd.LOCAL,
   };
-}
-
-
+};

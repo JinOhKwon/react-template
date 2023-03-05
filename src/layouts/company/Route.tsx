@@ -16,8 +16,6 @@ export const baseRoute: Route[] = [
     element: <Layout />,
     roles: [],
     isAuth: false,
-    children: [
-    
-    ],
+    children: [],
   },
 ];

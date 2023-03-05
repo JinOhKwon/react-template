@@ -16,7 +16,6 @@ export interface Auth {
   token: string;
 }
 
-
 /**
  * 인증 atom
  */

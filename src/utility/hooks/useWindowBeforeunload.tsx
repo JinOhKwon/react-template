@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 /**
  * 새로고침 이벤트 리스너
- * 
+ *
  * @param value 값
  */
 const useWindowBeforeunload = (value: string) => {

@@ -2,6 +2,17 @@
   "name": "react-template",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"src/**/*.+(ts|tsx)\"",
+    "start": "NODE_ENV=local react-scripts start",
+    "start:staging": "NODE_ENV=staging react-scripts start",
+    "start:prod": "NODE_ENV=prod react-scripts start",
+    "build": "NODE_ENV=local react-scripts build",
+    "build:staging": "NODE_ENV=staging react-scripts build",
+    "build:prod": "NODE_ENV=prod react-scripts build"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -26,13 +37,9 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "@types/react-dom": "^18.0.11",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0"
   },
   "eslintConfig": {
     "extends": [

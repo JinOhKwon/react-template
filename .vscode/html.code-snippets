@@ -1,0 +1,30 @@
+{
+  // example
+  // 스니핏 이름(설명)
+  "사용자 태그": {
+    // 단축키
+    "prefix": "gtag",
+    // 입력 될 명령어 $1 $2 는 입력 순서
+    "body": ["<$1 className={classes.$2}></$1>"]
+  },
+  "div": {
+    "prefix": "gdiv",
+    "body": ["<div className={`${styles.$1}`}></div>"]
+  },
+  "col": {
+    "prefix": "gcol",
+    "body": ["<Col className={`${styles.$1}`}></Col>"]
+  },
+  "row": {
+    "prefix": "grow",
+    "body": ["<Row className={`${styles.$1}`}></Row>"]
+  },
+  "row - col": {
+    "prefix": "grc",
+    "body": ["<Row}></Row>", "<Col></Col>"]
+  },
+  "Box": {
+    "prefix": "gbox",
+    "body": ["<Box className={classes.$1}></Box>"]
+  }
+}

@@ -15,4 +15,3 @@ export const sidebarAtom = atom<SidebarAtom>({
   default: '',
   effects: [localStorageEffect(StoargeEnum.ETC)],
 });
-
