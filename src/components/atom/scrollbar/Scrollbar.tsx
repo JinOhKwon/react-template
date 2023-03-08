@@ -22,7 +22,7 @@ const Scrollbar = forwardRef((props: ScrollbarProps, ref: any) => {
   /**
    * 소품
    */
-  const { children, className, scrollToTop = true, ...others } = props;
+  const { children, scrollToTop = true, ...others } = props;
   /**
    * 스크롤바 DOM
    */
