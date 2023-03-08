@@ -1,6 +1,6 @@
 import { Navigate, NonIndexRouteObject, useRoutes } from 'react-router-dom';
-import { baseRoute } from './company/Route';
-import { NavigatePath } from './company/constants/NavigatePath';
+import { NavigatePath } from './base/constants/NavigatePath';
+import { baseRoute } from './base/Route';
 
 /**
  * role 인터페이스
