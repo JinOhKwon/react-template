@@ -11,33 +11,37 @@ export interface IError<T> extends AxiosError<T, any> {
   msgArgs?: Array<string> | Array<number>;
 }
 
-export const findAll = async <T,>(url: string, config?: AxiosRequestConfig<T>) => {
-  const response = await httpClient.get<T | T[]>(url, { ...config });
+// TODO 공통 response 정의
+export type ApiResponse<T> = T & T[];
+export type ApiRequest<T = unknown> = T;
+
+export const findAll = async <ApiRequest,>(url: string, config?: AxiosRequestConfig<ApiRequest>) => {
+  const response = await httpClient.get<ApiResponse<ApiRequest>>(url, { ...config });
   return response.data;
 };
 
-export const find = async <T,>(url: string, config?: AxiosRequestConfig<T>) => {
-  const response = await httpClient.get<T | T[]>(url, { ...config });
+export const find = async <ApiRequest,>(url: string, config?: AxiosRequestConfig<ApiRequest>) => {
+  const response = await httpClient.get<ApiResponse<ApiRequest>>(url, { ...config });
   return response.data;
 };
 
-export const post = async <T,>(url: string, config?: AxiosRequestConfig<T>) => {
-  const response = await httpClient.post<T | T[]>(url, { ...config });
+export const post = async <ApiRequest,>(url: string, data: ApiRequest, config?: AxiosRequestConfig<ApiRequest>) => {
+  const response = await httpClient.post<ApiResponse<ApiRequest>>(url, data, { ...config });
   return response.data;
 };
 
-export const put = async <T,>(url: string, config?: AxiosRequestConfig<T>) => {
-  const response = await httpClient.put<T | T[]>(url, { ...config });
+export const put = async <ApiRequest,>(url: string, data: ApiRequest, config?: AxiosRequestConfig<ApiRequest>) => {
+  const response = await httpClient.put<ApiResponse<ApiRequest>>(url, data, { ...config });
   return response.data;
 };
 
-export const patch = async <T,>(url: string, config?: AxiosRequestConfig<T>) => {
-  const response = await httpClient.patch<T | T[]>(url, { ...config });
+export const patch = async <ApiRequest,>(url: string, data: ApiRequest, config?: AxiosRequestConfig<ApiRequest>) => {
+  const response = await httpClient.patch<ApiResponse<ApiRequest>>(url, data, { ...config });
   return response.data;
 };
 
-export const remove = async <T,>(url: string, config?: AxiosRequestConfig<T>) => {
-  const response = await httpClient.delete<T | T[]>(url, { ...config });
+export const remove = async <ApiRequest,>(url: string, config?: AxiosRequestConfig<ApiRequest>) => {
+  const response = await httpClient.delete<ApiResponse<ApiRequest>>(url, { ...config });
   return response.data;
 };
 
@@ -83,9 +87,13 @@ export const useWrapQuery = <
 };
 
 export const useWrapMuation = <
-  TData = unknown,
+  // TODO dto가 들어갈수 있음
+  // TVariables = void | TUserRequest,
+  TVariables = void | any,
+  // TODO dto가 들어갈수 있음
+  // TData = unknown | TUserResponse,
+  TData = unknown | any,
   TError extends IError<TData> = IError<TData> & unknown,
-  TVariables = void,
   TContext = unknown,
   TMutationKey extends MutationKey = MutationKey,
 >(

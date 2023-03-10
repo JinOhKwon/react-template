@@ -2,8 +2,8 @@ import { memo, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useRecoilValue } from 'recoil';
 import MmtLocale from '../../locale/MmtLocale';
+import { localeAtom } from '../../recoil/locale/Locale.atom';
 import { IntlGlobalProvider } from '../../util';
-import { localeAtom } from './recoil/model/LocaleModel';
 
 /**
  * 번역기 제공 소품
@@ -18,7 +18,7 @@ interface LocaleProviderProps {
 /**
  * 번역기 제공
  */
-const MmtLocaleProvider = (props: LocaleProviderProps) => {
+const LocaleProvider = (props: LocaleProviderProps) => {
   /**
    * 소품
    */
@@ -57,4 +57,4 @@ const MmtLocaleProvider = (props: LocaleProviderProps) => {
   );
 };
 
-export default memo(MmtLocaleProvider);
+export default memo(LocaleProvider);

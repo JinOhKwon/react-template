@@ -1,32 +1,19 @@
-import React from 'react';
 import { CssBaseline } from '@mui/material';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import AuthRoutes from './utility/hooks/useAuthRoutes';
-import MmtLocaleProvider from './utility/provider/locale/MmtLocaleProvider';
-import MmtThemeProvider from './utility/provider/theme/MmtThemeProvider';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ErrorSuspense } from './components/molecule';
 import { LayoutRoute } from './layouts/LayoutRoute';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      suspense: true,
-      useErrorBoundary: false,
-      retry: 0,
-    },
-  },
-});
+import AuthRoutes from './utility/hooks/useAuthRoutes';
+import LocaleProvider from './utility/provider/locale/LocaleProvider';
+import { QueryClientProvider } from './utility/provider/query-client/QueryClientProvider';
+import ThemeProvider from './utility/provider/theme/ThemeProvider';
 
 function App() {
   return (
     <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <MmtThemeProvider>
-          <MmtLocaleProvider>
+      <QueryClientProvider>
+        <ThemeProvider>
+          <LocaleProvider>
             <BrowserRouter>
               <ErrorSuspense>
                 <AuthRoutes>
@@ -35,8 +22,8 @@ function App() {
                 </AuthRoutes>
               </ErrorSuspense>
             </BrowserRouter>
-          </MmtLocaleProvider>
-        </MmtThemeProvider>
+          </LocaleProvider>
+        </ThemeProvider>
       </QueryClientProvider>
     </RecoilRoot>
   );

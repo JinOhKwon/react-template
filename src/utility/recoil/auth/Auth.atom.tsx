@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
-import { StoargeEnum } from '../../effect/constant/StorageEnum';
-import { localStorageEffect } from '../../effect/Storage';
+import { StoargeEnum } from '../effect/constant/StorageEnum';
+import { localStorageEffect } from '../effect/Storage';
 
 /**
  * 인증

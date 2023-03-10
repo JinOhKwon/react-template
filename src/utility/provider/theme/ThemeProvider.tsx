@@ -1,7 +1,7 @@
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { useMediaQuery } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider as MaterialThemeProvider } from '@mui/material/styles';
 import { memo, ReactNode, useMemo } from 'react';
 import { getDesignTokens, themeConfig } from '../../config/ThemeConfig';
 import { ThemeType } from '../../config/ThemeConfigType';
@@ -9,7 +9,7 @@ import { ThemeType } from '../../config/ThemeConfigType';
 /**
  * 멘토 테마 제공 소품
  */
-interface MomentorThemeProviderProps {
+interface ThemeProviderProps {
   /**
    * react node
    */
@@ -29,7 +29,7 @@ const muiCache = createCache({
  *
  * @param props 소품
  */
-const MmtThemeProvider = (props: MomentorThemeProviderProps) => {
+const ThemeProvider = (props: ThemeProviderProps) => {
   /**
    * 소품
    */
@@ -51,9 +51,9 @@ const MmtThemeProvider = (props: MomentorThemeProviderProps) => {
 
   return (
     <CacheProvider value={muiCache}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <MaterialThemeProvider theme={theme}>{children}</MaterialThemeProvider>
     </CacheProvider>
   );
 };
 
-export default memo(MmtThemeProvider);
+export default memo(ThemeProvider);
